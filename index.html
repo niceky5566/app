@@ -39,7 +39,7 @@
     window.addEventListener('message', function(event) {
       if (event.origin === 'https://script.google.com') {
         if (event.data.title) {
-          document.title = event.data.title;
+          document.title = pageTitle;
         }
         if (event.data.logo) {
           document.getElementById('favicon').href = event.data.logo;
