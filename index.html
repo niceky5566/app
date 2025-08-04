@@ -3,9 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My App</title>
-  <link rel="icon" id="favicon" type="image/png" href="">
   <style>
-    body { margin: 0; }
     .responsive-iframe {
       position: absolute;
       top: 0;
@@ -25,24 +23,16 @@
   <script>
     const apps = new URL(window.location);
     const formUrl = apps.searchParams.get('apps');
-    document.getElementById('myframe').src = decodeURIComponent(formUrl);
-    // const url = decodeURIComponent(formUrl);
-    // document.getElementById('myframe').src = url;
+    const url = decodeURIComponent(formUrl);
+    document.getElementById('myframe').src = url;
 
-    // เพิ่ม Event Listener เพื่อรอรับข้อความ
-    window.addEventListener('message', function(event) {
-      // ตรวจสอบว่าข้อความมาจาก URL ที่ถูกต้องหรือไม่ เพื่อความปลอดภัย
-      if (event.origin === 'https://script.google.com') {
-        // ตรวจสอบว่ามีข้อมูลชื่อเรื่องอยู่ในข้อความ
-        if (event.data.title) {
-          document.title = event.data.title;
-        }
-        // ตรวจสอบว่ามีข้อมูลโลโก้อยู่ในข้อความ
-        if (event.data.logo) {
-          document.getElementById('favicon').href = event.data.logo;
-        }
-      }
-    });
+    // ดึงค่า title จากพารามิเตอร์ใน URL
+    const pageTitle = apps.searchParams.get('title');
+
+    // ถ้ามีค่า title ใน URL ให้ใช้ค่านั้นเป็นชื่อเรื่องของหน้าเว็บ
+    if (pageTitle) {
+      document.title = pageTitle;
+    }
   </script>
 </body>
 </html>
