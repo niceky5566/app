@@ -25,6 +25,17 @@
     const formUrl = apps.searchParams.get('apps');
     const url = decodeURIComponent(formUrl)
           document.getElementById('myframe').src = url
+    // เพิ่ม Event Listener เพื่อรอรับข้อความ
+  window.addEventListener('message', function(event) {
+    // ตรวจสอบว่าข้อความมาจาก URL ที่ถูกต้องหรือไม่ เพื่อความปลอดภัย
+    if (event.origin === 'https://script.google.com') {
+      // ตรวจสอบว่ามีข้อมูลชื่อเรื่องอยู่ในข้อความ
+      if (event.data.title) {
+        // ตั้งชื่อเรื่องของหน้าเว็บหลัก
+        document.title = event.data.title;
+      }
+    }
+  });
   </script>
 </body>
 </html>
