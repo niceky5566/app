@@ -28,17 +28,17 @@
     document.getElementById('myframe').src = decodeURIComponent(formUrl);
     // document.getElementById('myframe').src = url;
 
-    // window.addEventListener('message', function(event) {
-    //   if (event.origin === 'https://script.google.com') {
-    //     console.log('ข้อมูลที่ได้รับ:', event.data);
-    //     if (event.data.title) {
-    //       document.title = event.data.title;
-    //     }
-    //     if (event.data.logo) {
-    //       document.getElementById('favicon').href = event.data.logo;
-    //     }
-    //   }
-    // });
+    window.addEventListener('message', function(event) {
+      if (event.origin === 'https://script.google.com') {
+        console.log('ข้อมูลที่ได้รับ:', event.data);
+        if (event.data.title) {
+          document.title = event.data.title;
+        }
+        if (event.data.logo) {
+          document.getElementById('favicon').href = event.data.logo;
+        }
+      }
+    });
   </script>
 </body>
 </html>
