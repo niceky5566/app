@@ -18,16 +18,16 @@
   </style>
 </head>
 <body>
-  <div> 
+  <div>
     <iframe id="myframe" class="responsive-iframe" src="" allowFullScreen></iframe>
   </div>
   <script>
     const apps = new URL(window.location);
     const formUrl = apps.searchParams.get('apps');
-    const url = decodeURIComponent(formUrl)
+    const url = decodeURIComponent(formUrl);
     document.getElementById('myframe').src = url;
 
-     // เพิ่ม Event Listener เพื่อรอรับข้อความ
+    // เพิ่ม Event Listener เพื่อรอรับข้อความ
     window.addEventListener('message', function(event) {
       // ตรวจสอบว่าข้อความมาจาก URL ที่ถูกต้องหรือไม่ เพื่อความปลอดภัย
       if (event.origin === 'https://script.google.com') {
