@@ -28,9 +28,9 @@
     // document.getElementById('myframe').src = decodeURIComponent(formUrl);
     document.getElementById('myframe').src = url;
 
+    // เพิ่ม Event Listener เพื่อรอรับข้อความจาก Google Apps Script
     window.addEventListener('message', function(event) {
       if (event.origin === 'https://script.google.com') {
-        console.log('ข้อมูลที่ได้รับ:', event.data);
         if (event.data.title) {
           document.title = event.data.title;
         }
