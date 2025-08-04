@@ -26,12 +26,12 @@
   <script>
     // const apps = new URL(window.location);
     const url = new URL(window.location);
-    const formUrl = url.searchParams.get('apps');
-    // const formUrl = apps.searchParams.get('apps');
-    const appurl = decodeURIComponent(formUrl);
-    // document.getElementById('myframe').src = decodeURIComponent(formUrl);
-    // document.getElementById('myframe').src = url;
- document.getElementById('myframe').src = appsUrl;
+    // const formUrl = url.searchParams.get('apps');
+    const formUrl = apps.searchParams.get('apps');
+    // const appurl = decodeURIComponent(formUrl);
+    document.getElementById('myframe').src = decodeURIComponent(formUrl);
+    document.getElementById('myframe').src = url;
+ // document.getElementById('myframe').src = appsUrl;
     
     // ดึงค่า title จากพารามิเตอร์ใน URL
     const pageTitle = apps.searchParams.get('title');
