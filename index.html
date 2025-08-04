@@ -3,10 +3,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My App</title>
-  <link rel="icon" id="favicon" type="image/png" href="">
 <!--   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/Gemini_Generated_Image_eet7ubeet7ubeet7-Photoroom-Photoroom.png"> -->
   <style>
-    body { margin: 0; }
     .responsive-iframe {
       position: absolute;
       top: 0;
@@ -28,24 +26,14 @@
     const formUrl = apps.searchParams.get('apps');
     const url = decodeURIComponent(formUrl);
     // document.getElementById('myframe').src = decodeURIComponent(formUrl);
-    // document.getElementById('myframe').src = url;
- document.getElementById('myframe').src = appsUrl;
-    
-    // ดึงค่า title จากพารามิเตอร์ใน URL
-    const pageTitle = apps.searchParams.get('title');
-    // ถ้ามีค่า title ใน URL ให้ใช้ค่านั้นเป็นชื่อเรื่องของหน้าเว็บ
-    if (pageTitle) {
-      document.title = pageTitle;
-    }
-    
+    document.getElementById('myframe').src = url;
+
     // เพิ่ม Event Listener เพื่อรอรับข้อความจาก Google Apps Script
-     window.addEventListener('message', function(event) {
+    window.addEventListener('message', function(event) {
       if (event.origin === 'https://script.google.com') {
-        // อัปเดตชื่อเรื่องหากมีข้อมูลส่งมา
         if (event.data.title) {
           document.title = event.data.title;
         }
-        // อัปเดตโลโก้หากมีข้อมูลส่งมา
         if (event.data.logo) {
           document.getElementById('favicon').href = event.data.logo;
         }
