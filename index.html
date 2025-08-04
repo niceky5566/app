@@ -24,18 +24,15 @@
     const apps = new URL(window.location);
     const formUrl = apps.searchParams.get('apps');
     const url = decodeURIComponent(formUrl)
-          document.getElementById('myframe').src = url
-    // เพิ่ม Event Listener เพื่อรอรับข้อความ
-  window.addEventListener('message', function(event) {
-    // ตรวจสอบว่าข้อความมาจาก URL ที่ถูกต้องหรือไม่ เพื่อความปลอดภัย
-    if (event.origin === 'https://script.google.com') {
-      // ตรวจสอบว่ามีข้อมูลชื่อเรื่องอยู่ในข้อความ
-      if (event.data.title) {
-        // ตั้งชื่อเรื่องของหน้าเว็บหลัก
-        document.title = event.data.title;
-      }
+    document.getElementById('myframe').src = url;
+
+    // ดึงค่า title จากพารามิเตอร์ใน URL
+    const pageTitle = apps.searchParams.get('title');
+    
+    // ถ้ามีค่า title ใน URL ให้ใช้ค่านั้นเป็นชื่อเรื่องของหน้าเว็บ
+    if (pageTitle) {
+      document.title = pageTitle;
     }
-  });
   </script>
 </body>
 </html>
