@@ -28,8 +28,9 @@
     const formUrl = apps.searchParams.get('apps');
     const url = decodeURIComponent(formUrl);
     // document.getElementById('myframe').src = decodeURIComponent(formUrl);
-    document.getElementById('myframe').src = url;
-
+    // document.getElementById('myframe').src = url;
+ document.getElementById('myframe').src = appsUrl;
+    
     // ดึงค่า title จากพารามิเตอร์ใน URL
     const pageTitle = apps.searchParams.get('title');
     // ถ้ามีค่า title ใน URL ให้ใช้ค่านั้นเป็นชื่อเรื่องของหน้าเว็บ
@@ -38,8 +39,13 @@
     }
     
     // เพิ่ม Event Listener เพื่อรอรับข้อความจาก Google Apps Script
-    window.addEventListener('message', function(event) {
+     window.addEventListener('message', function(event) {
       if (event.origin === 'https://script.google.com') {
+        // อัปเดตชื่อเรื่องหากมีข้อมูลส่งมา
+        if (event.data.title) {
+          document.title = event.data.title;
+        }
+        // อัปเดตโลโก้หากมีข้อมูลส่งมา
         if (event.data.logo) {
           document.getElementById('favicon').href = event.data.logo;
         }
