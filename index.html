@@ -1,44 +1,95 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My App</title>
-<!--   <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/Gemini_Generated_Image_eet7ubeet7ubeet7-Photoroom-Photoroom.png"> -->
-  <style>
-    .responsive-iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-  <div>
-    <iframe id="myframe" class="responsive-iframe" src="" allowFullScreen></iframe>
-  </div>
-  <script>
-    const apps = new URL(window.location);
-    const formUrl = apps.searchParams.get('apps');
-    const url = decodeURIComponent(formUrl);
-    // document.getElementById('myframe').src = decodeURIComponent(formUrl);
-    document.getElementById('myframe').src = url;
 
-    // เพิ่ม Event Listener เพื่อรอรับข้อความจาก Google Apps Script
-    window.addEventListener('message', function(event) {
-      if (event.origin === 'https://script.google.com') {
-        if (event.data.title) {
-          document.title = event.data.title;
-        }
-        if (event.data.logo) {
-          document.getElementById('favicon').href = event.data.logo;
-        }
-      }
-    });
-  </script>
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My App</title>
+
+  <link rel="icon" type="image/png" href="https://img5.pic.in.th/file/secure-sv1/Gemini_Generated_Image_eet7ubeet7ubeet7-Photoroom-Photoroom.png">
+
+  <style>
+
+    .responsive-iframe {
+
+      position: absolute;
+
+      top: 0;
+
+      left: 0;
+
+      bottom: 0;
+
+      right: 0;
+
+      width: 100vw;
+
+      height: 100vh;
+
+      border: none;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div>
+
+    <iframe id="myframe" class="responsive-iframe" src="" allowFullScreen></iframe>
+
+  </div>
+
+  <script>
+
+    const apps = new URL(window.location);
+
+    const formUrl = apps.searchParams.get('apps');
+
+    const url = decodeURIComponent(formUrl);
+
+    // document.getElementById('myframe').src = decodeURIComponent(formUrl);
+
+    document.getElementById('myframe').src = url;
+
+
+
+    // ดึงค่า title จากพารามิเตอร์ใน URL
+
+    const pageTitle = apps.searchParams.get('title');
+
+    // ถ้ามีค่า title ใน URL ให้ใช้ค่านั้นเป็นชื่อเรื่องของหน้าเว็บ
+
+    if (pageTitle) {
+
+      document.title = pageTitle;
+
+    }
+
+    
+
+    // เพิ่ม Event Listener เพื่อรอรับข้อความจาก Google Apps Script
+
+    window.addEventListener('message', function(event) {
+
+      if (event.origin === 'https://script.google.com') {
+
+        if (event.data.logo) {
+
+          document.getElementById('favicon').href = event.data.logo;
+
+        }
+
+      }
+
+    });
+
+  </script>
+
 </body>
+
 </html>
