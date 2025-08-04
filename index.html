@@ -24,9 +24,9 @@
   <script>
     const apps = new URL(window.location);
     const formUrl = apps.searchParams.get('apps');
-    // const url = decodeURIComponent(formUrl);
-    document.getElementById('myframe').src = decodeURIComponent(formUrl);
-    // document.getElementById('myframe').src = url;
+    const url = decodeURIComponent(formUrl);
+    // document.getElementById('myframe').src = decodeURIComponent(formUrl);
+    document.getElementById('myframe').src = url;
 
     window.addEventListener('message', function(event) {
       if (event.origin === 'https://script.google.com') {
