@@ -26,13 +26,20 @@
     const url = decodeURIComponent(formUrl)
     document.getElementById('myframe').src = url;
 
-    // ดึงค่า title จากพารามิเตอร์ใน URL
-    const pageTitle = apps.searchParams.get('title');
-
-    // ถ้ามีค่า title ใน URL ให้ใช้ค่านั้นเป็นชื่อเรื่องของหน้าเว็บ
-    if (pageTitle) {
-      document.title = pageTitle;
-    }
+     // เพิ่ม Event Listener เพื่อรอรับข้อความ
+    window.addEventListener('message', function(event) {
+      // ตรวจสอบว่าข้อความมาจาก URL ที่ถูกต้องหรือไม่ เพื่อความปลอดภัย
+      if (event.origin === 'https://script.google.com') {
+        // ตรวจสอบว่ามีข้อมูลชื่อเรื่องอยู่ในข้อความ
+        if (event.data.title) {
+          document.title = event.data.title;
+        }
+        // ตรวจสอบว่ามีข้อมูลโลโก้อยู่ในข้อความ
+        if (event.data.logo) {
+          document.getElementById('favicon').href = event.data.logo;
+        }
+      }
+    });
   </script>
 </body>
 </html>
