@@ -5,6 +5,7 @@
   <title>My App</title>
   <link rel="icon" id="favicon" type="image/png" href="">
   <style>
+    body { margin: 0; }
     .responsive-iframe {
       position: absolute;
       top: 0;
@@ -24,8 +25,9 @@
   <script>
     const apps = new URL(window.location);
     const formUrl = apps.searchParams.get('apps');
-    const url = decodeURIComponent(formUrl);
-    document.getElementById('myframe').src = url;
+    document.getElementById('myframe').src = decodeURIComponent(formUrl);
+    // const url = decodeURIComponent(formUrl);
+    // document.getElementById('myframe').src = url;
 
     // เพิ่ม Event Listener เพื่อรอรับข้อความ
     window.addEventListener('message', function(event) {
